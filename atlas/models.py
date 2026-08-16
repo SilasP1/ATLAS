@@ -87,25 +87,48 @@ class AircraftProfile:
         )
 
 
+def _validate_coordinates(latitude_deg: float, longitude_deg: float) -> None:
+    if not -90 <= latitude_deg <= 90:
+        raise ValueError("latitude_deg must be in [-90, 90]")
+    if not -180 <= longitude_deg <= 180:
+        raise ValueError("longitude_deg must be in [-180, 180]")
+
+
 @dataclass(frozen=True)
 class GeoPoint:
     latitude_deg: float
     longitude_deg: float
-    altitude_m: float
+
+    def __post_init__(self) -> None:
+        _validate_coordinates(self.latitude_deg, self.longitude_deg)
+
+
+@dataclass(frozen=True)
+class HomePoint(GeoPoint):
+    altitude_amsl_m: float
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> HomePoint:
+        return cls(
+            latitude_deg=float(data["latitude_deg"]),
+            longitude_deg=float(data["longitude_deg"]),
+            altitude_amsl_m=float(data["altitude_amsl_m"]),
+        )
+
+
+@dataclass(frozen=True)
+class MissionWaypoint(GeoPoint):
+    altitude_relative_home_m: float
     loiter_time_s: float = 0.0
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> GeoPoint:
+    def from_dict(cls, data: dict[str, Any]) -> MissionWaypoint:
         point = cls(
             latitude_deg=float(data["latitude_deg"]),
             longitude_deg=float(data["longitude_deg"]),
-            altitude_m=float(data["altitude_m"]),
+            altitude_relative_home_m=float(data["altitude_relative_home_m"]),
             loiter_time_s=float(data.get("loiter_time_s", 0)),
         )
-        if not -90 <= point.latitude_deg <= 90:
-            raise ValueError("latitude_deg must be in [-90, 90]")
-        if not -180 <= point.longitude_deg <= 180:
-            raise ValueError("longitude_deg must be in [-180, 180]")
         if point.loiter_time_s < 0:
             raise ValueError("loiter_time_s cannot be negative")
         return point
@@ -116,21 +139,20 @@ class MissionPlan:
     schema_version: int
     mission_id: str
     revision: int
-    home: GeoPoint
-    waypoints: tuple[GeoPoint, ...]
+    home: HomePoint
+    waypoints: tuple[MissionWaypoint, ...]
     return_to_home: bool = True
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> MissionPlan:
-        waypoints = tuple(GeoPoint.from_dict(item) for item in data["waypoints"])
+        waypoints = tuple(MissionWaypoint.from_dict(item) for item in data["waypoints"])
         if not waypoints:
             raise ValueError("Mission must contain at least one waypoint")
         return cls(
             schema_version=int(data["schema_version"]),
             mission_id=str(data["mission_id"]),
             revision=int(data["revision"]),
-            home=GeoPoint.from_dict(data["home"]),
+            home=HomePoint.from_dict(data["home"]),
             waypoints=waypoints,
             return_to_home=bool(data.get("return_to_home", True)),
         )
-

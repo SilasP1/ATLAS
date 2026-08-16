@@ -18,8 +18,8 @@ def load_fixture(name: str) -> dict[str, object]:
 
 class GeometryTests(unittest.TestCase):
     def test_one_degree_latitude_is_about_111_2_km(self) -> None:
-        start = GeoPoint(0, 0, 0)
-        end = GeoPoint(1, 0, 0)
+        start = GeoPoint(0, 0)
+        end = GeoPoint(1, 0)
         self.assertAlmostEqual(horizontal_distance_m(start, end), 111_195, delta=50)
 
 
@@ -56,7 +56,7 @@ class EstimatorTests(unittest.TestCase):
 
     def test_altitude_violation_generates_warning(self) -> None:
         data = load_fixture("example_mission.json")
-        data["waypoints"][0]["altitude_m"] = 200
+        data["waypoints"][0]["altitude_relative_home_m"] = 200
         estimate = estimate_mission(self.profile, MissionPlan.from_dict(data))
         self.assertIn(
             "Waypoint 1 is above the aircraft profile maximum altitude",
@@ -78,4 +78,3 @@ class EstimatorTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

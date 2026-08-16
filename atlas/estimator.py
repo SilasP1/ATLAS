@@ -53,9 +53,9 @@ def estimate_mission(profile: AircraftProfile, mission: MissionPlan) -> MissionE
 
     warnings: list[str] = []
     for index, waypoint in enumerate(mission.waypoints, start=1):
-        if waypoint.altitude_m < profile.minimum_altitude_m.value:
+        if waypoint.altitude_relative_home_m < profile.minimum_altitude_m.value:
             warnings.append(f"Waypoint {index} is below the aircraft profile minimum altitude")
-        if waypoint.altitude_m > profile.maximum_altitude_m.value:
+        if waypoint.altitude_relative_home_m > profile.maximum_altitude_m.value:
             warnings.append(f"Waypoint {index} is above the aircraft profile maximum altitude")
     if total_time_s > profile.maximum_flight_time_s.value:
         warnings.append("Predicted mission duration exceeds the aircraft profile limit")
@@ -86,4 +86,3 @@ def estimate_mission(profile: AircraftProfile, mission: MissionPlan) -> MissionE
         feasible_by_model=not warnings,
         warnings=tuple(warnings),
     )
-

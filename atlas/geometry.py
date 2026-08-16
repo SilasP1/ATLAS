@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from math import asin, cos, radians, sin, sqrt
 
-from .models import GeoPoint
+from .models import GeoPoint, HomePoint, MissionWaypoint
 
 EARTH_RADIUS_M = 6_371_008.8
 
@@ -17,10 +17,13 @@ def horizontal_distance_m(start: GeoPoint, end: GeoPoint) -> float:
     return 2 * EARTH_RADIUS_M * asin(sqrt(a))
 
 
-def route_distance_m(home: GeoPoint, waypoints: tuple[GeoPoint, ...], return_to_home: bool) -> float:
+def route_distance_m(
+    home: HomePoint,
+    waypoints: tuple[MissionWaypoint, ...],
+    return_to_home: bool,
+) -> float:
     points = (home, *waypoints)
     distance = sum(horizontal_distance_m(a, b) for a, b in zip(points, points[1:]))
     if return_to_home:
         distance += horizontal_distance_m(waypoints[-1], home)
     return distance
-

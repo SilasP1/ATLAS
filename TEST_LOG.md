@@ -24,3 +24,24 @@
 - **Next experiment:** Export several mission shapes, load them into QGroundControl
   and ArduPilot SITL, and verify waypoint order, units, commands, and round-trip
   identity before building the map interface.
+
+## 2026-08-16 — GitHub Pages testing interface
+
+- **Revision/configuration:** Static HTML/CSS/JavaScript interface; Vite 8.2.1
+  used only for development preview and production-build validation.
+- **Question:** Can a polished browser interface expose the same deterministic
+  ATLAS calculation without changing results or hiding model limits?
+- **Hypothesis:** A dependency-free deployed application can reproduce the Python
+  kernel while keeping all mission data local to the device.
+- **Procedure:** Run the Python suite, browser estimator parity test, JavaScript
+  syntax check, and Vite production build.
+- **Controls:** Shared synthetic aircraft and fictional Null Island mission;
+  known geodesic distance; nominal model pass; excessive-loiter model failure.
+- **Result:** 7/7 Python tests passed; browser parity and warning tests passed;
+  JavaScript syntax check passed; production build completed successfully.
+- **Evidence status:** Calculation parity and static build are verified. Visual
+  browser preview was unavailable because the preview browser blocked the healthy
+  internal service, so live deployment inspection remains required.
+- **Decision:** `advance` to GitHub Pages deployment and live interaction check.
+- **Next experiment:** Verify the deployed interface on desktop and mobile, then
+  implement QGroundControl `.plan` export against a known-good control mission.

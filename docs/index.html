@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b0a">
+  <meta name="description" content="ATLAS mission feasibility testing for SUBTUS aircraft.">
+  <title>ATLAS / Mission Testing</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="grid-field" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="https://underseer-technologies.com" aria-label="Underseer Technologies">
+      <span class="eye-mark" aria-hidden="true"><i></i></span>
+      <span>UNDERSEER</span>
+    </a>
+    <div class="product-mark"><span>ATLAS</span><small>MISSION TESTING / V0</small></div>
+    <div class="session-state"><i></i> LOCAL BROWSER SESSION</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <p class="eyebrow"><span></span> DEPLOYMENT INTELLIGENCE</p>
+        <h1>Know the mission<br>before launch.</h1>
+      </div>
+      <div class="intro-copy">
+        <p>Model a SUBTUS route against explicit aircraft assumptions. ATLAS calculates distance, duration, energy demand, and predicted landing reserve.</p>
+        <div class="notice"><strong>PLANNING AID</strong><span>Outputs are estimates—not flight authorization or autopilot commands.</span></div>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Mission testing workspace">
+      <div class="configuration">
+        <div class="section-head">
+          <div><span>01</span><div><small>MISSION INPUT</small><h2>Define the route.</h2></div></div>
+          <button class="text-button" id="load-sample">RESET SAMPLE ↘</button>
+        </div>
+
+        <div class="form-block home-grid">
+          <label>Mission ID<input id="mission-id" type="text" autocomplete="off"></label>
+          <label>Home latitude<input id="home-lat" type="number" step="0.000001"></label>
+          <label>Home longitude<input id="home-lon" type="number" step="0.000001"></label>
+          <label>Home altitude AMSL <em>m</em><input id="home-alt" type="number" step="1"></label>
+        </div>
+
+        <div class="table-label"><span>ROUTE POINTS</span><span>ALTITUDE FRAME / RELATIVE TO HOME</span></div>
+        <div class="waypoint-table" id="waypoint-table"></div>
+        <div class="route-actions">
+          <button class="outline-button" id="add-waypoint">+ ADD WAYPOINT</button>
+          <label class="toggle"><input id="return-home" type="checkbox"><span></span> RETURN TO HOME</label>
+        </div>
+
+        <div class="section-head aircraft-head">
+          <div><span>02</span><div><small>AIRCRAFT PROFILE</small><h2>Set the assumptions.</h2></div></div>
+          <span class="evidence-badge">ESTIMATE</span>
+        </div>
+        <div class="aircraft-grid" id="aircraft-fields"></div>
+
+        <div class="data-actions">
+          <button class="outline-button" id="import-aircraft">IMPORT AIRCRAFT JSON</button>
+          <button class="outline-button" id="import-mission">IMPORT MISSION JSON</button>
+          <input id="aircraft-file" type="file" accept="application/json,.json" hidden>
+          <input id="mission-file" type="file" accept="application/json,.json" hidden>
+        </div>
+      </div>
+
+      <aside class="analysis-panel">
+        <div class="sticky-analysis">
+          <div class="section-head results-head">
+            <div><span>03</span><div><small>MODEL OUTPUT</small><h2>Mission estimate.</h2></div></div>
+            <span id="status-chip" class="status-chip">CALCULATING</span>
+          </div>
+
+          <div class="route-display">
+            <div class="display-meta"><span>ROUTE SCHEMATIC</span><span id="point-count">00 POINTS</span></div>
+            <svg id="route-svg" viewBox="0 0 640 300" role="img" aria-label="Mission route schematic"></svg>
+            <div class="axis-note">RELATIVE GEOMETRY / NOT A NAVIGATION MAP</div>
+          </div>
+
+          <div class="primary-metrics">
+            <article><small>ROUTE DISTANCE</small><strong id="metric-distance">—</strong><span>km</span></article>
+            <article><small>TOTAL DURATION</small><strong id="metric-duration">—</strong><span>min</span></article>
+            <article><small>ENERGY DEMAND</small><strong id="metric-energy">—</strong><span>Wh</span></article>
+            <article class="reserve-card"><small>LANDING RESERVE</small><strong id="metric-reserve">—</strong><span>%</span><div class="reserve-track"><i id="reserve-bar"></i></div></article>
+          </div>
+
+          <div class="secondary-metrics">
+            <div><span>MAXIMUM RANGE FROM HOME</span><strong id="metric-range">—</strong></div>
+            <div><span>CRUISE / LOITER / VTOL</span><strong id="metric-phases">—</strong></div>
+            <div><span>PROFILE / MISSION REVISION</span><strong id="metric-revisions">—</strong></div>
+          </div>
+
+          <div id="message-panel" class="message-panel" aria-live="polite"></div>
+
+          <div class="export-actions">
+            <button class="primary-button" id="export-estimate">EXPORT ESTIMATE JSON ↘</button>
+            <button class="outline-button" id="export-inputs">EXPORT INPUT BUNDLE</button>
+          </div>
+          <p class="privacy-note">Inputs autosave only in this browser. No mission data is transmitted by ATLAS V0.</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer><span>ATLAS / UNDERSEER TECHNOLOGIES</span><span>DETERMINISTIC MODEL / SCHEMA V1</span><a href="https://github.com/SilasP1/ATLAS">SOURCE ↗</a></footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
+

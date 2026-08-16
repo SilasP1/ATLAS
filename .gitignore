@@ -1,5 +1,7 @@
 .env
 .venv/
+node_modules/
+dist/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -14,4 +16,3 @@ __pycache__/
 /secrets/
 /config/private/
 /aircraft/profiles/real/
-

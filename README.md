@@ -5,6 +5,19 @@ SUBTUS aircraft. This public V0 proves a narrow loop: describe an aircraft and a
 mission, calculate a conservative estimate, and later compare that estimate with
 an ArduPilot flight log.
 
+## Browser testing tool
+
+The static ATLAS testing interface is published through GitHub Pages at
+<https://silasp1.github.io/ATLAS/>. It runs entirely in the browser; test inputs
+and autosaved state do not leave the device.
+
+For local interface development:
+
+```bash
+npm install
+npm run dev
+```
+
 ## Current milestone
 
 Milestone 1 is the deterministic calculation kernel. It accepts versioned JSON
@@ -30,6 +43,7 @@ python -m atlas.cli estimate \
 
 ```bash
 python -m unittest discover -s tests -v
+node tests/test_web_estimator.mjs
 ```
 
 ## Data policy
@@ -43,4 +57,3 @@ never be committed.
 Copyright (c) 2026 Underseer Technologies LLC. All rights reserved. Source is
 publicly viewable for development demonstration and evaluation. No license is
 granted to use, modify, distribute, or create derivative works.
-

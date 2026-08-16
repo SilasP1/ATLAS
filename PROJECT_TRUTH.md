@@ -10,16 +10,15 @@ autopilot or ground-control workflow.
 
 ## Present phase
 
-Build and validate the deterministic mission-estimation core. Mapping, mission
-export, log ingestion, and prediction-versus-actual analysis follow only after
-the data contracts and unit handling pass this gate.
+Expose the validated deterministic mission-estimation core through a static,
+device-local browser testing interface, while preparing the next QGroundControl
+mission-export gate.
 
 ## Current gate
 
-Given versioned synthetic inputs, the estimator must produce deterministic
-distance, duration, energy, reserve, and warning outputs. It must reject malformed
-or physically impossible inputs and preserve the evidence status of aircraft
-parameters.
+The Python and browser estimators must remain numerically equivalent for the
+same versioned inputs. The interface must expose assumptions, altitude semantics,
+warnings, and evidence status without presenting estimates as flight authority.
 
 ## Largest uncertainty
 
@@ -33,7 +32,7 @@ measured nor verified SUBTUS performance.
 
 ## Explicitly deferred
 
-Map UI, user accounts, cloud deployment, direct MAVLink control, QGroundControl
-export, ArduPilot log ingestion, weather, airspace, customer workflows, automated
-route optimization, fleet scheduling, and regulatory automation.
-
+Navigation-map tiles, user accounts, server-side storage, direct MAVLink control,
+ArduPilot log ingestion, weather, airspace, customer workflows, automated route
+optimization, fleet scheduling, and regulatory automation. QGroundControl export
+is the next bounded integration milestone.

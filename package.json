@@ -1,0 +1,13 @@
+{
+  "name": "subtus-atlas-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite docs",
+    "test": "node tests/test_web_estimator.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.2.1"
+  }
+}
