@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "profile_id": "synthetic-vtol-fixed-wing",
+  "revision": 1,
+  "vehicle_type": "VTOL_FIXED_WING",
+  "cruise_speed_mps": {"value": 18, "status": "estimate", "source": "synthetic fixture"},
+  "usable_battery_wh": {"value": 300, "status": "estimate", "source": "synthetic fixture"},
+  "required_reserve_fraction": {"value": 0.20, "status": "estimate", "source": "synthetic fixture"},
+  "cruise_power_w": {"value": 250, "status": "estimate", "source": "synthetic fixture"},
+  "hover_power_w": {"value": 900, "status": "estimate", "source": "synthetic fixture"},
+  "loiter_power_w": {"value": 275, "status": "estimate", "source": "synthetic fixture"},
+  "transition_energy_wh": {"value": 8, "status": "estimate", "source": "synthetic fixture"},
+  "takeoff_time_s": {"value": 30, "status": "estimate", "source": "synthetic fixture"},
+  "landing_time_s": {"value": 30, "status": "estimate", "source": "synthetic fixture"},
+  "maximum_flight_time_s": {"value": 5400, "status": "estimate", "source": "synthetic fixture"},
+  "minimum_altitude_m": {"value": 20, "status": "estimate", "source": "synthetic fixture"},
+  "maximum_altitude_m": {"value": 120, "status": "estimate", "source": "synthetic fixture"}
+}
+

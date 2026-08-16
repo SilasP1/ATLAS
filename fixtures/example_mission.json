@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "mission_id": "synthetic-null-island-loop",
+  "revision": 1,
+  "home": {
+    "latitude_deg": 0.0,
+    "longitude_deg": 0.0,
+    "altitude_m": 0
+  },
+  "waypoints": [
+    {
+      "latitude_deg": 0.0046,
+      "longitude_deg": 0.0,
+      "altitude_m": 80
+    },
+    {
+      "latitude_deg": 0.0046,
+      "longitude_deg": 0.0052,
+      "altitude_m": 80,
+      "loiter_time_s": 60
+    },
+    {
+      "latitude_deg": 0.0,
+      "longitude_deg": 0.0052,
+      "altitude_m": 80
+    }
+  ],
+  "return_to_home": true
+}

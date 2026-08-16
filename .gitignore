@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.bin
+*.tlog
+*.sqlite
+*.db
+/data/raw/
+/data/flights/
+/data/sites/
+/exports/
+/secrets/
+/config/private/
+/aircraft/profiles/real/
+
