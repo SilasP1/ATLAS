@@ -142,7 +142,6 @@ function calculate() {
   input("metric-reserve").textContent = format(currentEstimate.predicted_landing_reserve_fraction * 100, 1);
   input("metric-range").textContent = `${format(currentEstimate.maximum_distance_from_home_m / 1000, 2)} KM`;
   input("metric-phases").textContent = `${format(currentEstimate.cruise_time_s / 60, 1)} / ${format(currentEstimate.loiter_time_s / 60, 1)} / ${format(currentEstimate.fixed_vtol_time_s / 60, 1)} MIN`;
-  input("metric-revisions").textContent = `${state.profile.revision} / ${state.mission.revision}`;
   const reservePercent = Math.max(0, Math.min(100, currentEstimate.predicted_landing_reserve_fraction * 100));
   input("reserve-bar").style.width = `${reservePercent}%`;
   input("reserve-bar").style.background = currentEstimate.feasible_by_model ? "var(--green)" : "var(--red)";
@@ -237,4 +236,3 @@ input("export-estimate").addEventListener("click", () => { if (!currentEstimate?
 input("export-inputs").addEventListener("click", () => downloadJson(`${state.mission.mission_id}-inputs.json`, state));
 
 renderInputs();
-
