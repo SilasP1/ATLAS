@@ -9,33 +9,30 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="grid-field" aria-hidden="true"></div>
   <header class="topbar">
     <a class="brand" href="https://underseer-technologies.com" aria-label="Underseer Technologies">
-      <span class="eye-mark" aria-hidden="true"><i></i></span>
-      <span>UNDERSEER</span>
+      <span class="underseer-mark" aria-hidden="true"><i>UNDERSEER</i></span>
     </a>
-    <div class="product-mark"><span>ATLAS</span><small>MISSION TESTING / V0</small></div>
-    <div class="session-state"><i></i> LOCAL BROWSER SESSION</div>
+    <div class="product-mark"><span>ATLAS</span><small>V0 / MISSION TESTING</small></div>
   </header>
 
   <main>
     <section class="intro">
       <div>
-        <p class="eyebrow"><span></span> DEPLOYMENT INTELLIGENCE</p>
-        <h1>Know the mission<br>before launch.</h1>
+        <p class="eyebrow">MISSION FEASIBILITY</p>
+        <h1>Plan. Estimate. Test.</h1>
       </div>
-      <div class="intro-copy">
-        <p>Model a SUBTUS route against explicit aircraft assumptions. ATLAS calculates distance, duration, energy demand, and predicted landing reserve.</p>
-        <div class="notice"><strong>PLANNING AID</strong><span>Outputs are estimates—not flight authorization or autopilot commands.</span></div>
+      <div class="notice">
+        <strong>PLANNING ONLY</strong>
+        <span>ATLAS estimates feasibility. It cannot arm, command, or upload to an aircraft.</span>
       </div>
     </section>
 
     <section class="workspace" aria-label="Mission testing workspace">
       <div class="configuration">
         <div class="section-head">
-          <div><span>01</span><div><small>MISSION INPUT</small><h2>Define the route.</h2></div></div>
-          <button class="text-button" id="load-sample">RESET SAMPLE ↘</button>
+          <div><small>MISSION</small><h2>Route</h2></div>
+          <button class="text-button" id="load-sample">RESET SAMPLE</button>
         </div>
 
         <div class="form-block home-grid">
@@ -53,7 +50,7 @@
         </div>
 
         <div class="section-head aircraft-head">
-          <div><span>02</span><div><small>AIRCRAFT PROFILE</small><h2>Set the assumptions.</h2></div></div>
+          <div><small>AIRCRAFT</small><h2>Performance assumptions</h2></div>
           <span class="evidence-badge">ESTIMATE</span>
         </div>
         <div class="aircraft-grid" id="aircraft-fields"></div>
@@ -69,7 +66,7 @@
       <aside class="analysis-panel">
         <div class="sticky-analysis">
           <div class="section-head results-head">
-            <div><span>03</span><div><small>MODEL OUTPUT</small><h2>Mission estimate.</h2></div></div>
+            <div><small>OUTPUT</small><h2>Mission estimate</h2></div>
             <span id="status-chip" class="status-chip">CALCULATING</span>
           </div>
 
@@ -89,13 +86,12 @@
           <div class="secondary-metrics">
             <div><span>MAXIMUM RANGE FROM HOME</span><strong id="metric-range">—</strong></div>
             <div><span>CRUISE / LOITER / VTOL</span><strong id="metric-phases">—</strong></div>
-            <div><span>PROFILE / MISSION REVISION</span><strong id="metric-revisions">—</strong></div>
           </div>
 
           <div id="message-panel" class="message-panel" aria-live="polite"></div>
 
           <div class="export-actions">
-            <button class="primary-button" id="export-estimate">EXPORT ESTIMATE JSON ↘</button>
+            <button class="primary-button" id="export-estimate">EXPORT ESTIMATE JSON</button>
             <button class="outline-button" id="export-inputs">EXPORT INPUT BUNDLE</button>
           </div>
           <p class="privacy-note">Inputs autosave only in this browser. No mission data is transmitted by ATLAS V0.</p>
@@ -104,8 +100,7 @@
     </section>
   </main>
 
-  <footer><span>ATLAS / UNDERSEER TECHNOLOGIES</span><span>DETERMINISTIC MODEL / SCHEMA V1</span><a href="https://github.com/SilasP1/ATLAS">SOURCE ↗</a></footer>
+  <footer><span>ATLAS / UNDERSEER</span><a href="https://github.com/SilasP1/ATLAS">SOURCE ↗</a></footer>
   <script type="module" src="./app.js"></script>
 </body>
 </html>
-
